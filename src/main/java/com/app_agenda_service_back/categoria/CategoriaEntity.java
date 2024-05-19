@@ -23,4 +23,7 @@ public class CategoriaEntity implements Serializable {
 
     private String categoriaDescricao;
 
+//    @OneToMany(mappedBy = "servico_id",fetch = FetchType.EAGER)
+//    private List<ServicoEntity> servicos;
+
 }
