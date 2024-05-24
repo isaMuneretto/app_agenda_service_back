@@ -12,8 +12,8 @@ import java.time.LocalDate;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
 @Table(name = "usuario")
+@Entity
 public class UsuarioEntity implements Serializable {
     private static final long serialVersionUID = 1L;
 
