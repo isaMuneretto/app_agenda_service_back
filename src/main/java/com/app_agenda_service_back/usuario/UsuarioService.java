@@ -12,7 +12,8 @@ public class UsuarioService {
 
     //ver com Filipe pq aqui é diferente do endereco Service
     @Autowired
-    private UsuarioRepository<UsuarioEntity, Long> usuarioRepository;
+    private UsuarioRepository usuarioRepository;
+    //private UsuarioRepository<UsuarioEntity, Long> usuarioRepository;
 
     @Autowired
     private EnderecoService enderecoService;
@@ -31,8 +32,9 @@ public class UsuarioService {
     }
 
     //ver com Filipe pq é diferente do endereco Service
-    public UsuarioDTO create(UsuarioEntity usuario){
-        usuarioRepository.save(usuario);
+    public UsuarioDTO create(UsuarioDTO usuarioDTO){
+        UsuarioEntity usuario = usuarioMapper.toEntity(usuarioDTO);
+        usuario = usuarioRepository.save(usuario);
         return usuarioMapper.toDTO(usuario);
     }
 

@@ -20,6 +20,7 @@ public interface UsuarioMapper {
     @Mappings({
             @Mapping(source = "usuarioDTO.usuarioId", target = "usuarioId"),
             @Mapping(source = "usuarioDTO.usuarioCpf", target = "usuarioCpf"),
+            @Mapping(source = "usuarioDTO.usuarioNome", target = "usuarioNome"),
             @Mapping(source = "usuarioDTO.usuarioEmail", target = "usuarioEmail"),
             @Mapping(source = "usuarioDTO.usuarioDataNascimento", target = "usuarioDataNascimento"),
             @Mapping(source = "usuarioDTO.usuarioSenha", target = "usuarioSenha"),

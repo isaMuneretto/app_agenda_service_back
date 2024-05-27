@@ -38,6 +38,5 @@ public class UsuarioDTO implements Serializable {
     @NotNull(message = "O campo DATA_NASCIMENTO é requerido")
     private LocalDate usuarioDataNascimento;
 
-    @JsonIgnore
     private EnderecoEntity endereco;
 }
