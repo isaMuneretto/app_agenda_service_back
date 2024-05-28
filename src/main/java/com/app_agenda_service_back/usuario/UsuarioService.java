@@ -10,10 +10,8 @@ import java.util.stream.Collectors;
 @Service
 public class UsuarioService {
 
-    //ver com Filipe pq aqui é diferente do endereco Service
     @Autowired
     private UsuarioRepository usuarioRepository;
-    //private UsuarioRepository<UsuarioEntity, Long> usuarioRepository;
 
     @Autowired
     private EnderecoService enderecoService;
@@ -40,7 +38,7 @@ public class UsuarioService {
 
     public UsuarioDTO update(Long id,UsuarioDTO usuarioDTO){
         UsuarioEntity usuario = usuarioRepository.findById(id).orElseThrow(()-> new IllegalArgumentException("Usuário não encontrado"));
-        //usuarioDTO.setUsuarioId(usuario.getUsuarioId());
+        usuarioDTO.setUsuarioId(id);
         usuario = usuarioMapper.updateEntity(usuarioDTO,usuario);
         usuario = usuarioRepository.save(usuario);
         return usuarioMapper.toDTO(usuario);
