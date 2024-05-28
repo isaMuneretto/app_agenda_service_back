@@ -1,4 +1,42 @@
 package com.app_agenda_service_back.servico;
 
-public class ServicoEntity {
+import com.app_agenda_service_back.categoria.CategoriaEntity;
+import com.app_agenda_service_back.prestador.PrestadorEntity;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.io.Serializable;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Entity
+@Table(name = "servico")
+public class ServicoEntity implements Serializable {
+
+    public static final long serialVersionUID = 1L;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long servicoId;
+
+    private String servicoNome;
+
+    private Double servicoPreco;
+
+    private String servicoDescricao;
+
+    private String servicoInformacoesExtras;
+
+    private String servicoClassificao;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "servico_categoriaId", nullable = false)
+    private CategoriaEntity categoria;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "servico_prestadorId", nullable = false)
+    private PrestadorEntity prestador;
 }
