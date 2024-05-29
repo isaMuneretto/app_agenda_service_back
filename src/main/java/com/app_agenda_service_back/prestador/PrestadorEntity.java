@@ -1,12 +1,15 @@
 package com.app_agenda_service_back.prestador;
 
 import com.app_agenda_service_back.endereco.EnderecoEntity;
+import com.app_agenda_service_back.servico.ServicoEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -36,4 +39,7 @@ public class PrestadorEntity implements Serializable {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "prestador_enderecoId", nullable = false)
     private EnderecoEntity endereco;
+
+    @OneToMany(fetch = FetchType.EAGER)
+    private List<ServicoEntity> servicos = new ArrayList<>();
 }

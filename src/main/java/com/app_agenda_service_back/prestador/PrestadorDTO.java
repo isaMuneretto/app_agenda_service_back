@@ -1,6 +1,7 @@
 package com.app_agenda_service_back.prestador;
 
 import com.app_agenda_service_back.endereco.EnderecoEntity;
+import com.app_agenda_service_back.servico.ServicoEntity;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,6 +10,8 @@ import org.hibernate.validator.constraints.br.CNPJ;
 import org.hibernate.validator.constraints.br.CPF;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -38,4 +41,6 @@ public class PrestadorDTO implements Serializable {
     private String prestadorCpf;
 
     private EnderecoEntity endereco;
+
+    private List<ServicoEntity> servicos = new ArrayList<>();
 }
