@@ -1,6 +1,7 @@
 package com.app_agenda_service_back.endereco;
 
 
+import com.app_agenda_service_back.prestador.PrestadorEntity;
 import com.app_agenda_service_back.usuario.UsuarioEntity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
@@ -42,4 +43,8 @@ public class EnderecoEntity implements Serializable {
     @OneToMany(fetch = FetchType.EAGER)
     @JsonIgnore
     private List<UsuarioEntity> usuarios = new ArrayList<>();
+
+    @OneToMany(fetch = FetchType.EAGER)
+    @JsonIgnore
+    private List<PrestadorEntity> prestadores = new ArrayList<>();
 }

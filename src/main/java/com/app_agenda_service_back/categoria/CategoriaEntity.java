@@ -1,11 +1,13 @@
 package com.app_agenda_service_back.categoria;
 
+import com.app_agenda_service_back.servico.ServicoEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -23,7 +25,7 @@ public class CategoriaEntity implements Serializable {
 
     private String categoriaDescricao;
 
-//    @OneToMany(mappedBy = "servico_id",fetch = FetchType.EAGER)
-//    private List<ServicoEntity> servicos;
+    @OneToMany(fetch = FetchType.EAGER)
+    private List<ServicoEntity> servicos;
 
 }

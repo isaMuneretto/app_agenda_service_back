@@ -30,7 +30,7 @@ public class ServicoEntity implements Serializable {
 
     private String servicoInformacoesExtras;
 
-    private String servicoClassificao;
+    private String servicoClassificacao;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "servico_categoriaId", nullable = false)

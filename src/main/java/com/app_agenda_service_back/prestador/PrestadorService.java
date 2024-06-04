@@ -31,8 +31,6 @@ public class PrestadorService {
         return prestadorMapper.toDTO(prestador);
     }
 
-    // o create de usuario está diferente, verificar com Filipe
-
     @Transactional
     public PrestadorDTO create(PrestadorEntity prestador){
         prestadorRepository.save(prestador);
