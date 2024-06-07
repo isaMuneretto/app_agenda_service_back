@@ -37,11 +37,10 @@ public class ServicoService {
 
     @Transactional
     public ServicoDTO create(ServicoEntity servico){
-        servicoRepository.save(servico);
+        servico = servicoRepository.save(servico);
         return servicoMapper.toDTO(servico);
     }
 
-    //tem que fzer os get e set?
     @Transactional
     public ServicoDTO update(Long id,ServicoDTO servicoDTO){
         ServicoEntity servico = servicoRepository.findById(id).orElseThrow(()-> new IllegalArgumentException("Prestador não encontrado"));
