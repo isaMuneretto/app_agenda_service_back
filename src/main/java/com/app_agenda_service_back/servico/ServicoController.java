@@ -39,7 +39,6 @@ public class ServicoController {
         ServicoDTO updatedServicoDTO = servicoService.update(id, servicoDTO);
 
         return ResponseEntity.ok(updatedServicoDTO);
-
     }
 
     @DeleteMapping("/{id}")
