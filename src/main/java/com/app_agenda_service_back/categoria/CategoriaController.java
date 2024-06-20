@@ -46,5 +46,8 @@ public class CategoriaController {
         return ResponseEntity.noContent().build();
     }
 
-
+    @ExceptionHandler(IllegalArgumentException.class)
+    public ResponseEntity<String> handleIllegalArgumentException(IllegalArgumentException ex){
+        return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
+    }
 }

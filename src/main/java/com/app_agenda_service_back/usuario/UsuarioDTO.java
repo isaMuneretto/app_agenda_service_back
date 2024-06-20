@@ -3,6 +3,7 @@ package com.app_agenda_service_back.usuario;
 import com.app_agenda_service_back.endereco.EnderecoEntity;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -21,17 +22,17 @@ public class UsuarioDTO implements Serializable {
 
     private Long usuarioId;
 
-    @NotNull(message = "O campo NOME é requerido")
+    @NotBlank(message = "O campo NOME é requerido")
     private String usuarioNome;
 
     @CPF
-    @NotNull(message = "O campo CPF é requerido")
+    @NotBlank(message = "O campo CPF é requerido")
     private String usuarioCpf;
 
-    @NotNull(message = "O campo EMAIL é requerido")
+    @NotBlank(message = "O campo EMAIL é requerido")
     private String usuarioEmail;
 
-    @NotNull(message = "O campo SENHA é requerido")
+    @NotBlank(message = "O campo SENHA é requerido")
     private String usuarioSenha;
 
     @JsonFormat(pattern = "yyyy-MM-dd")

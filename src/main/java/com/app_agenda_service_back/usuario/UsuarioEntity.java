@@ -32,6 +32,6 @@ public class UsuarioEntity implements Serializable {
     private LocalDate usuarioDataNascimento;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "usuario_enderecoId", nullable = false)
+    @JoinColumn(name = "usuario_enderecoId")
     private EnderecoEntity endereco;
 }
