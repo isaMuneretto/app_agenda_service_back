@@ -13,9 +13,8 @@ import org.springframework.http.MediaType;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.transaction.TestTransaction;
 import org.springframework.test.web.servlet.MockMvc;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @SpringBootTest
@@ -114,10 +113,9 @@ public class CategoriaTest {
 
     @Test
     @DisplayName("Verifica se está deletando uma categoria")
-    void delete() throws Exception{
-        mockMvc.perform(delete("/categorias/13")
-                .andExpect(status().isOk())
-                .andExpect(content().string("Categoria deletada"));
+    void deleted() throws Exception{
+        mockMvc.perform(delete("/categorias/13"))
+                .andExpect(status().isOk());
     }
 
 

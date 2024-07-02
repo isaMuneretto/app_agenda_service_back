@@ -29,6 +29,7 @@ public class PrestadorController {
 
     @PostMapping
     public ResponseEntity<PrestadorDTO> createPrestador(@RequestBody PrestadorEntity prestador){
+        System.out.println("Dados do prestador:" + prestador);
         PrestadorDTO createPrestadorDTO = prestadorService.create(prestador);
         return ResponseEntity.status(HttpStatus.CREATED).body(createPrestadorDTO);
     }
