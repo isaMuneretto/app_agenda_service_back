@@ -2,6 +2,7 @@ package com.app_agenda_service_back.prestador;
 
 import com.app_agenda_service_back.endereco.EnderecoEntity;
 import com.app_agenda_service_back.servico.ServicoEntity;
+import com.app_agenda_service_back.telefone.TelefoneEntity;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -43,4 +44,6 @@ public class PrestadorDTO implements Serializable {
     private EnderecoEntity endereco;
 
     private List<ServicoEntity> servicos = new ArrayList<>();
+
+    private List<TelefoneEntity> telefones = new ArrayList<>();
 }

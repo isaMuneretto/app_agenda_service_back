@@ -17,12 +17,6 @@ public class ServicoService {
     private ServicoRepository servicoRepository;
 
     @Autowired
-    private CategoriaService categoriaService;
-
-    @Autowired
-    private PrestadorService prestadorService;
-
-    @Autowired
     private ServicoMapper servicoMapper;
 
     public List<ServicoDTO> findAll(){
@@ -36,7 +30,8 @@ public class ServicoService {
     }
 
     @Transactional
-    public ServicoDTO create(ServicoEntity servico){
+    public ServicoDTO create(ServicoDTO servicoDTO){
+        ServicoEntity servico = servicoMapper.toEntity(servicoDTO);
         servico = servicoRepository.save(servico);
         return servicoMapper.toDTO(servico);
     }

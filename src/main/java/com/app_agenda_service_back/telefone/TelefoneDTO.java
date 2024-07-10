@@ -3,6 +3,7 @@ package com.app_agenda_service_back.telefone;
 import com.app_agenda_service_back.prestador.PrestadorEntity;
 import com.app_agenda_service_back.usuario.UsuarioEntity;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,6 +19,7 @@ public class TelefoneDTO implements Serializable {
 
     private long telefoneId;
 
+    @NotNull(message = "O campo NUMERO é requerido")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "(XX) XXXX-XXXX")
     private String telefoneNumero;
 

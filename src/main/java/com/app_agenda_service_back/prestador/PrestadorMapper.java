@@ -26,7 +26,8 @@ public interface PrestadorMapper {
             @Mapping(source = "prestadorDTO.prestadorSenha", target = "prestadorSenha"),
             @Mapping(source = "prestadorDTO.prestadorCpf", target = "prestadorCpf"),
             @Mapping(source = "prestadorDTO.endereco", target = "endereco"),
-            @Mapping(source = "prestadorDTO.servicos", target = "servicos")
+            @Mapping(source = "prestadorDTO.servicos", target = "servicos"),
+            @Mapping(source = "prestadorDTO.telefones", target = "telefones"),
     })
     PrestadorEntity updateEntity(PrestadorDTO prestadorDTO, PrestadorEntity prestador);
 }

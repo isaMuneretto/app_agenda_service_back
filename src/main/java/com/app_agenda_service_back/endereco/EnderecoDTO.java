@@ -1,5 +1,6 @@
 package com.app_agenda_service_back.endereco;
 
+import com.app_agenda_service_back.prestador.PrestadorEntity;
 import com.app_agenda_service_back.usuario.UsuarioEntity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.validation.constraints.NotNull;
@@ -40,7 +41,7 @@ public class EnderecoDTO implements Serializable {
     @NotNull(message = "O campo BAIRRO é requerido")
     private String enderecoBairro;
 
-    @JsonIgnore
     private List<UsuarioEntity> usuarios = new ArrayList<>();
 
+    private List<PrestadorEntity> prestadores = new ArrayList<>();
 }

@@ -1,6 +1,8 @@
 package com.app_agenda_service_back.usuario;
 
+import com.app_agenda_service_back.agendamento.AgendamentoEntity;
 import com.app_agenda_service_back.endereco.EnderecoEntity;
+import com.app_agenda_service_back.telefone.TelefoneEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -8,6 +10,8 @@ import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -34,4 +38,10 @@ public class UsuarioEntity implements Serializable {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "usuario_enderecoId")
     private EnderecoEntity endereco;
+
+    @OneToMany(fetch = FetchType.EAGER)
+    private List<TelefoneEntity> telefones = new ArrayList<>();
+
+    @OneToMany(fetch = FetchType.EAGER)
+    private List<AgendamentoEntity> agendamentos = new ArrayList<>();
 }

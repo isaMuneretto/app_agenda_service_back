@@ -8,30 +8,19 @@ import java.util.List;
 
 @Mapper(componentModel = "spring")
 public interface TelefoneMapper {
-
-    @Mappings({
-            @Mapping(source = "telefoneId", target = "telefoneId"),
-            @Mapping(source = "telefoneNumero", target = "telefoneNumero"),
-            @Mapping(source = "usuario.usuarioId", target = "usuario.usuarioId"),
-            @Mapping(source = "prestador.prestadorId", target = "prestador.prestadorId")
-    })
+    @Mapping(source = "telefoneId", target = "telefoneId")
     TelefoneDTO toDTO(TelefoneEntity telefone);
-
-    @Mappings({
-            @Mapping(source = "telefoneDTO.telefoneId", target = "telefoneId"),
-            @Mapping(source = "telefoneDTO.telefoneNumero", target = "telefoneNumero"),
-            @Mapping(source = "telefoneDTO.usuario.usuarioId", target = "usuario.usuarioId"),
-            @Mapping(source = "telefoneDTO.prestador.prestadorId", target = "prestador.prestadorId")
-    })
+    @Mapping(source = "telefoneDTO.telefoneId", target = "telefoneId")
     TelefoneEntity toEntity(TelefoneDTO telefoneDTO);
 
-    List<TelefoneDTO> toDTOList(List<TelefoneEntity> telefone);
-
+    //recebendo lista de telefone do banco em DTO
+    List<TelefoneDTO> toDTO(List<TelefoneEntity> telefones);
     @Mappings({
             @Mapping(source = "telefoneDTO.telefoneId", target = "telefoneId"),
             @Mapping(source = "telefoneDTO.telefoneNumero", target = "telefoneNumero"),
-            @Mapping(source = "telefoneDTO.usuario.usuarioId", target = "usuario.usuarioId"),
-            @Mapping(source = "telefoneDTO.prestador.prestadorId", target = "prestador.prestadorId")
+            @Mapping(source = "telefoneDTO.usuario", target = "usuario"),
+            @Mapping(source = "telefoneDTO.prestador", target = "prestador")
     })
+
     TelefoneEntity updateEntity(TelefoneDTO telefoneDTO, TelefoneEntity telefone);
 }

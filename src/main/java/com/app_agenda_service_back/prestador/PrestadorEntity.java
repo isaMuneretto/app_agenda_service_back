@@ -2,6 +2,7 @@ package com.app_agenda_service_back.prestador;
 
 import com.app_agenda_service_back.endereco.EnderecoEntity;
 import com.app_agenda_service_back.servico.ServicoEntity;
+import com.app_agenda_service_back.telefone.TelefoneEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -42,4 +43,7 @@ public class PrestadorEntity implements Serializable {
 
     @OneToMany(fetch = FetchType.EAGER)
     private List<ServicoEntity> servicos = new ArrayList<>();
+
+    @OneToMany( fetch = FetchType.EAGER)
+    private List<TelefoneEntity> telefones;
 }

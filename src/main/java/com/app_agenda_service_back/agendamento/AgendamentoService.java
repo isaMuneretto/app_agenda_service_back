@@ -19,32 +19,27 @@ public class AgendamentoService {
     @Autowired
     AgendamentoMapper agendamentoMapper;
 
-    @Autowired
-    private UsuarioService usuarioService;
-
-    @Autowired
-    private ServicoService servicoService;
-
-
-    public List<AgendamentoDTO> getAllAgendamentos() {
+    public List<AgendamentoDTO> findAll() {
         List<AgendamentoEntity> agendamentos = agendamentoRepository.findAll();
         System.out.println(agendamentos);
         return agendamentoMapper.toDTOList(agendamentos);
     }
 
-    public AgendamentoDTO getAgendamentoById(Long id) {
+    public AgendamentoDTO findById(Long id) {
         AgendamentoEntity agendamento = agendamentoRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Agendamento not found with id: " + id));
         return agendamentoMapper.toDTO(agendamento);
     }
 
-    public AgendamentoDTO createAgendamento(AgendamentoEntity agendamento) {
+    public AgendamentoDTO create(AgendamentoDTO agendamentoDTO) {
+        AgendamentoEntity agendamento = agendamentoMapper.toEntity(agendamentoDTO);
+        agendamento.setAgendamentoStatus(AgendamentoStatus.PENDENTE);
         agendamento = agendamentoRepository.save(agendamento);
         return agendamentoMapper.toDTO(agendamento);
     }
 
     @Transactional
-    public AgendamentoDTO updateAgendamento(Long id, AgendamentoDTO agendamentoDTO) {
+    public AgendamentoDTO update(Long id, AgendamentoDTO agendamentoDTO) {
         AgendamentoEntity agendamento = agendamentoRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Agendamento não encontrado"));
 
         //agendamentoDTO.setId(id);
@@ -60,7 +55,7 @@ public class AgendamentoService {
         return agendamentoDTO;
     }
 
-    public void deleteAgendamentoById(Long id) {
+    public void deleteById(Long id) {
         agendamentoRepository.deleteById(id);
     }
 }

@@ -15,14 +15,11 @@ public class TelefoneService {
     private TelefoneRepository telefoneRepository;
 
     @Autowired
-    private PrestadorRepository prestadorRepository;
-
-    @Autowired
     private TelefoneMapper telefoneMapper;
 
     public List<TelefoneDTO> findAll() {
-        return telefoneRepository.findAll().stream().map(telefoneMapper::toDTO)
-                .collect(Collectors.toList());
+        List<TelefoneEntity> telefones = telefoneRepository.findAll();
+        return telefones.stream().map(telefoneMapper::toDTO).collect(Collectors.toList());
     }
 
     public TelefoneDTO findById(Long id) {
@@ -41,13 +38,10 @@ public class TelefoneService {
     }
 
     public TelefoneDTO update(Long id, TelefoneDTO telefoneDTO) {
-        TelefoneEntity telefone = telefoneRepository.findById(id)
-                .orElseThrow(()->new IllegalArgumentException("Telefone não encontrado"));
-        //telefone recebe os dados do telefoneDTO vindos do frontend
+        TelefoneEntity telefone = telefoneRepository.findById(id).orElseThrow(()->new IllegalArgumentException("Telefone não encontrado"));
+
         System.out.println(telefone);
-        telefoneDTO.setTelefoneId(telefone.getTelefoneId());
-//        Endereco endereco = telefone.getEndereco();
-//        telefoneDTO.setEndereco(endereco);
+        telefoneDTO.setTelefoneId(id);
         System.out.println("dto "+telefoneDTO);
         telefone = telefoneMapper.updateEntity(telefoneDTO, telefone);
         telefone = telefoneRepository.save(telefone);

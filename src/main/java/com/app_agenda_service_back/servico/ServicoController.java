@@ -1,5 +1,6 @@
 package com.app_agenda_service_back.servico;
 
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -7,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-//@CrossOrigin(origins = "http://localhost:5173"
+@CrossOrigin(origins = "http://localhost:5173")
 @RestController
 @RequestMapping("/servicos")
 public class ServicoController {
@@ -17,24 +18,25 @@ public class ServicoController {
 
     @GetMapping
     public ResponseEntity<List<ServicoDTO>> getAllServicos() {
-        List<ServicoDTO> servicos = servicoService.findAll();
-        return new ResponseEntity<>(servicos, HttpStatus.OK);
+        List<ServicoDTO> servicosDTO = servicoService.findAll();
+        System.out.println("servicosDTO"+servicosDTO);
+        return new ResponseEntity<>(servicosDTO, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<ServicoDTO> getServicoById(@PathVariable Long id) {
-        ServicoDTO servico = servicoService.findById(id);
-        return new ResponseEntity<>(servico, HttpStatus.OK);
+        ServicoDTO servicoDTO = servicoService.findById(id);
+        return new ResponseEntity<>(servicoDTO, HttpStatus.OK);
     }
 
     @PostMapping
-    public ResponseEntity<ServicoDTO> createServico(@RequestBody ServicoEntity servico) {
-        ServicoDTO createServicoDTO = servicoService.create(servico);
+    public ResponseEntity<ServicoDTO> createServico(@Valid @RequestBody ServicoDTO servicoDTO) {
+        ServicoDTO createServicoDTO = servicoService.create(servicoDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(createServicoDTO);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ServicoDTO> updateServico(@PathVariable Long id, @RequestBody ServicoDTO servicoDTO) {
+    public ResponseEntity<ServicoDTO> updateServico(@PathVariable Long id, @Valid @RequestBody ServicoDTO servicoDTO) {
         System.out.println("servicoDTO "+ servicoDTO);
         ServicoDTO updatedServicoDTO = servicoService.update(id, servicoDTO);
 

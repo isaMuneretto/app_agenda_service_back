@@ -20,7 +20,7 @@ public class AgendamentoDTO implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    private long agendamentoId; // Using Long instead of long for potential null values
+    private Long agendamentoId; // Using Long instead of long for potential null values
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate agendamentoData;

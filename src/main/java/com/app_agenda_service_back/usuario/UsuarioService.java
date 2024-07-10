@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -12,9 +13,6 @@ public class UsuarioService {
 
     @Autowired
     private UsuarioRepository usuarioRepository;
-
-    @Autowired
-    private EnderecoService enderecoService;
 
     @Autowired
     private UsuarioMapper usuarioMapper;
@@ -29,7 +27,6 @@ public class UsuarioService {
         return usuarioMapper.toDTO(usuario);
     }
 
-    //ver com Filipe pq é diferente do endereco Service
     public UsuarioDTO create(UsuarioDTO usuarioDTO){
         UsuarioEntity usuario = usuarioMapper.toEntity(usuarioDTO);
         usuario = usuarioRepository.save(usuario);
@@ -46,5 +43,9 @@ public class UsuarioService {
 
     public void deleteById(Long id){
         usuarioRepository.deleteById(id);
+    }
+
+    public UsuarioEntity findByUsuarioEmail(String usuarioEmail) {
+        return usuarioRepository.findByUsuarioEmail(usuarioEmail);
     }
 }

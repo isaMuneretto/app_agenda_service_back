@@ -1,6 +1,8 @@
 package com.app_agenda_service_back.prestador;
 
 import com.app_agenda_service_back.endereco.EnderecoService;
+import com.app_agenda_service_back.servico.ServicoEntity;
+import com.app_agenda_service_back.servico.ServicoRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,7 +17,7 @@ public class PrestadorService {
     private PrestadorRepository prestadorRepository;
 
     @Autowired
-    private EnderecoService enderecoService;
+    private ServicoRepository servicoRepository;
 
     @Autowired
     private PrestadorMapper prestadorMapper;
@@ -32,8 +34,9 @@ public class PrestadorService {
     }
 
     @Transactional
-    public PrestadorDTO create(PrestadorEntity prestador){
-        prestadorRepository.save(prestador);
+    public PrestadorDTO create(PrestadorDTO prestadorDTO){
+        PrestadorEntity prestador = prestadorMapper.toEntity(prestadorDTO);
+        prestador = prestadorRepository.save(prestador);
         return prestadorMapper.toDTO(prestador);
     }
 
@@ -49,5 +52,13 @@ public class PrestadorService {
 
     public void deleteById(Long id){
         prestadorRepository.deleteById(id);
+    }
+
+    public List<PrestadorDTO> findByServicoNome(String servicoNome) {
+        List<ServicoEntity> servicos = servicoRepository.findByServicoNome(servicoNome);
+        List<PrestadorEntity> prestadores = servicos.stream()
+                .map(ServicoEntity::getPrestador)
+                .collect(Collectors.toList());
+        return prestadores.stream().map(prestadorMapper::toDTO).collect(Collectors.toList());
     }
 }

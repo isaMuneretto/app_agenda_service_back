@@ -1,6 +1,8 @@
 package com.app_agenda_service_back.usuario;
 
+import com.app_agenda_service_back.agendamento.AgendamentoDTO;
 import com.app_agenda_service_back.endereco.EnderecoEntity;
+import com.app_agenda_service_back.telefone.TelefoneDTO;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.validation.constraints.NotBlank;
@@ -12,6 +14,7 @@ import org.hibernate.validator.constraints.br.CPF;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -40,4 +43,8 @@ public class UsuarioDTO implements Serializable {
     private LocalDate usuarioDataNascimento;
 
     private EnderecoEntity endereco;
+
+    private List<TelefoneDTO> telefones;
+
+    private List<AgendamentoDTO> agendamentos;
 }

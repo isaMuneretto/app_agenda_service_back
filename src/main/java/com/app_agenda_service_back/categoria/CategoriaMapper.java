@@ -22,6 +22,7 @@ public interface CategoriaMapper {
             @Mapping(source = "categoriaDTO.categoriaId", target = "categoriaId"),
             @Mapping(source = "categoriaDTO.categoriaNome", target = "categoriaNome"),
             @Mapping(source = "categoriaDTO.categoriaDescricao", target = "categoriaDescricao"),
+            @Mapping(source = "categoriaDTO.servicos", target = "servicos"),
     })
     CategoriaEntity updateEntity(CategoriaDTO categoriaDTO, CategoriaEntity categoria);
 
