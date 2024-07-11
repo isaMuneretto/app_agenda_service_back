@@ -18,8 +18,10 @@ public class AuthService {
     private static final long EXPIRATION_TIME = 3600000;
 
     public String authenticate(String usuarioEmail, String usuarioSenha) {
+        System.out.println("Senha: " + usuarioSenha);
+        System.out.println("Email:" + usuarioEmail);
         UsuarioEntity usuario = usuarioRepository.findByUsuarioEmail(usuarioEmail);
-        System.out.println("usuário:" + usuario);
+        System.out.println("Email:" + usuario);
         if(usuario != null && usuario.getUsuarioSenha().equals(usuarioSenha)) {
             return Jwts.builder()
                     .setSubject(usuario.getUsuarioEmail())

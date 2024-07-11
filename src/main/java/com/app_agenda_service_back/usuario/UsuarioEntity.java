@@ -29,6 +29,7 @@ public class UsuarioEntity implements Serializable {
 
     private String usuarioCpf;
 
+    @Column(unique = true)
     private String usuarioEmail;
 
     private String usuarioSenha;

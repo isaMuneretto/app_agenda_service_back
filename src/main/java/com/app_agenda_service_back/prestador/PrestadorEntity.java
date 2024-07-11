@@ -38,7 +38,7 @@ public class PrestadorEntity implements Serializable {
     private String prestadorCpf;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "prestador_enderecoId", nullable = false)
+    @JoinColumn(name = "prestador_enderecoId")
     private EnderecoEntity endereco;
 
     @OneToMany(fetch = FetchType.EAGER)

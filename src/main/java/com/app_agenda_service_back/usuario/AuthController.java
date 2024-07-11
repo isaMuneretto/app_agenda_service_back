@@ -26,6 +26,7 @@ public class AuthController {
         if(token != null) {
             Map<String, String> response = new HashMap<>();
             response.put("token", token);
+            System.out.println("deu tudo certo login");
             return ResponseEntity.ok(response);
         } else {
             return ResponseEntity.status(401).body("Invalid credentials");
