@@ -42,7 +42,7 @@ public class PrestadorEntity implements Serializable {
     private EnderecoEntity endereco;
 
     @OneToMany(fetch = FetchType.EAGER)
-    private List<ServicoEntity> servicos = new ArrayList<>();
+    private List<ServicoEntity> servicos;
 
     @OneToMany( fetch = FetchType.EAGER)
     private List<TelefoneEntity> telefones;

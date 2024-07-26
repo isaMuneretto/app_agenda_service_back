@@ -1,14 +1,13 @@
 package com.app_agenda_service_back.agendamento;
 
 import com.app_agenda_service_back.servico.ServicoEntity;
-import com.app_agenda_service_back.servico.ServicoService;
 import com.app_agenda_service_back.usuario.UsuarioEntity;
-import com.app_agenda_service_back.usuario.UsuarioService;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class AgendamentoService {
@@ -21,8 +20,8 @@ public class AgendamentoService {
 
     public List<AgendamentoDTO> findAll() {
         List<AgendamentoEntity> agendamentos = agendamentoRepository.findAll();
-        System.out.println(agendamentos);
-        return agendamentoMapper.toDTOList(agendamentos);
+        return agendamentos.stream().map(agendamentoMapper::toDTO).collect(Collectors.toList());
+        //return agendamentoMapper.toDTOList(agendamentos);
     }
 
     public AgendamentoDTO findById(Long id) {
@@ -33,6 +32,7 @@ public class AgendamentoService {
 
     public AgendamentoDTO create(AgendamentoDTO agendamentoDTO) {
         AgendamentoEntity agendamento = agendamentoMapper.toEntity(agendamentoDTO);
+
         agendamento.setAgendamentoStatus(AgendamentoStatus.PENDENTE);
         agendamento = agendamentoRepository.save(agendamento);
         return agendamentoMapper.toDTO(agendamento);
@@ -40,19 +40,13 @@ public class AgendamentoService {
 
     @Transactional
     public AgendamentoDTO update(Long id, AgendamentoDTO agendamentoDTO) {
-        AgendamentoEntity agendamento = agendamentoRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Agendamento não encontrado"));
+        AgendamentoEntity agendamento = agendamentoRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Agendamento não encontrado"));
 
-        //agendamentoDTO.setId(id);
-        ServicoEntity servico = agendamento.getServico();
-        agendamentoDTO.setServico(servico);
-        UsuarioEntity usuario = agendamento.getUsuario();
-        agendamentoDTO.setUsuario(usuario);
-        System.out.println("dto " + agendamentoDTO);
-        agendamento = agendamentoMapper.updateEntity(agendamentoDTO,agendamento);
+        agendamentoDTO.setAgendamentoId(id);
+        agendamento = agendamentoMapper.updateEntity(agendamentoDTO, agendamento);
         agendamento = agendamentoRepository.save(agendamento);
-        agendamentoDTO = agendamentoMapper.toDTO(agendamento);
-
-        return agendamentoDTO;
+        return agendamentoMapper.toDTO(agendamento);
     }
 
     public void deleteById(Long id) {

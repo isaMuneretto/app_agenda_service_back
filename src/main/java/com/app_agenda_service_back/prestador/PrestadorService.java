@@ -24,8 +24,8 @@ public class PrestadorService {
 
     public List<PrestadorDTO> findAll(){
         List<PrestadorEntity> prestadores = prestadorRepository.findAll();
-        return prestadorMapper.toDTOList(prestadores);
-        //return prestadores.stream().map(prestadorMapper::toDTO).collect(Collectors.toList());
+        //return prestadorMapper.toDTOList(prestadores);
+        return prestadores.stream().map(prestadorMapper::toDTO).collect(Collectors.toList());
     }
 
     public PrestadorDTO findById(Long id){
@@ -40,7 +40,6 @@ public class PrestadorService {
         return prestadorMapper.toDTO(prestador);
     }
 
-    //tem que fzer os get e set?
     @Transactional
     public PrestadorDTO update(Long id,PrestadorDTO prestadorDTO){
         PrestadorEntity prestador = prestadorRepository.findById(id).orElseThrow(()-> new IllegalArgumentException("Prestador não encontrado"));

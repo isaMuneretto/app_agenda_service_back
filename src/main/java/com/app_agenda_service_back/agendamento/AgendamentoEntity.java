@@ -19,13 +19,15 @@ import java.time.LocalTime;
 @Table(name = "agendamento")
 public class AgendamentoEntity implements Serializable {
 
-    public static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long agendamentoId;
 
-    private LocalDate agendamentoData;
+    @Temporal(TemporalType.DATE)
+    @JsonFormat(shape= JsonFormat.Shape.STRING, pattern ="dd/MM/yyyy")
+    private LocalDate agendamentoData = LocalDate.now();
 
     @Temporal(TemporalType.TIME)
     @JsonFormat(shape = JsonFormat.Shape.STRING,pattern = "HH:mm")
@@ -37,11 +39,11 @@ public class AgendamentoEntity implements Serializable {
     private AgendamentoStatus agendamentoStatus;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "agendamentoUsuarioId",nullable = false)
+    @JoinColumn(name = "agendamentoUsuarioId")
     private UsuarioEntity usuario;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "agendamentoServicoId",nullable = false)
+    @JoinColumn(name = "agendamentoServicoId")
     private ServicoEntity servico;
 
 }

@@ -1,5 +1,6 @@
 package com.app_agenda_service_back.servico;
 
+import com.app_agenda_service_back.agendamento.AgendamentoEntity;
 import com.app_agenda_service_back.categoria.CategoriaEntity;
 import com.app_agenda_service_back.prestador.PrestadorEntity;
 import jakarta.validation.constraints.NotNull;
@@ -8,15 +9,16 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class ServicoDTO implements Serializable {
 
-    public static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-    private long servicoId;
+    private Long servicoId;
 
     @NotNull(message = "O campo NOME é requerido")
     private String servicoNome;
@@ -35,4 +37,9 @@ public class ServicoDTO implements Serializable {
     private CategoriaEntity categoria;
 
     private PrestadorEntity prestador;
+
+    private List<AgendamentoEntity> agendamentos;
+
+    public void setServicoId(Long id) {
+    }
 }

@@ -26,6 +26,7 @@ public interface ServicoMapper {
             @Mapping(source = "servicoDTO.servicoClassificacao", target = "servicoClassificacao"),
             @Mapping(source = "servicoDTO.categoria", target = "categoria"),
             @Mapping(source = "servicoDTO.prestador", target = "prestador"),
+            @Mapping(source = "servicoDTO.agendamentos", target = "agendamentos"),
     })
     ServicoEntity updateEntity(ServicoDTO servicoDTO, ServicoEntity servico);
 }

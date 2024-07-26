@@ -1,5 +1,6 @@
 package com.app_agenda_service_back.endereco;
 
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,13 +29,13 @@ public class EnderecoController {
     }
 
     @PostMapping
-    public ResponseEntity<EnderecoDTO> createEndereco(@RequestBody EnderecoDTO enderecoDTO){
+    public ResponseEntity<EnderecoDTO> createEndereco(@Valid @RequestBody EnderecoDTO enderecoDTO){
         EnderecoDTO createEnderecoDTO = enderecoService.create(enderecoDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(createEnderecoDTO);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<EnderecoDTO> updateEndereco(@PathVariable Long id, @RequestBody EnderecoDTO enderecoDTO){
+    public ResponseEntity<EnderecoDTO> updateEndereco(@PathVariable Long id, @Valid @RequestBody EnderecoDTO enderecoDTO){
         EnderecoDTO updateEnderecoDTO = enderecoService.update(id,enderecoDTO);
         return ResponseEntity.ok(updateEnderecoDTO);
     }

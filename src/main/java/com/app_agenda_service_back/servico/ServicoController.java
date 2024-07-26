@@ -20,13 +20,13 @@ public class ServicoController {
     public ResponseEntity<List<ServicoDTO>> getAllServicos() {
         List<ServicoDTO> servicosDTO = servicoService.findAll();
         System.out.println("servicosDTO"+servicosDTO);
-        return new ResponseEntity<>(servicosDTO, HttpStatus.OK);
+        return ResponseEntity.ok(servicosDTO);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<ServicoDTO> getServicoById(@PathVariable Long id) {
         ServicoDTO servicoDTO = servicoService.findById(id);
-        return new ResponseEntity<>(servicoDTO, HttpStatus.OK);
+        return ResponseEntity.ok(servicoDTO);
     }
 
     @PostMapping
@@ -46,7 +46,7 @@ public class ServicoController {
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteServico(@PathVariable Long id) {
         servicoService.deleteById(id);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        return ResponseEntity.noContent().build();
     }
 
 }

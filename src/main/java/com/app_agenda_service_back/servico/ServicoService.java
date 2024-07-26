@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ServicoService {
@@ -19,9 +20,12 @@ public class ServicoService {
     @Autowired
     private ServicoMapper servicoMapper;
 
+    @Autowired
+    private PrestadorService prestadorService;
+
     public List<ServicoDTO> findAll(){
         List<ServicoEntity> servicos = servicoRepository.findAll();
-        return servicoMapper.toDTOList(servicos);
+        return servicos.stream().map(servicoMapper::toDTO).collect(Collectors.toList());
     }
 
     public ServicoDTO findById(Long id){

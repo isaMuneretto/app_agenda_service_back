@@ -19,7 +19,7 @@ import java.util.List;
 @Table(name = "servico")
 public class ServicoEntity implements Serializable {
 
-    public static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,13 +36,13 @@ public class ServicoEntity implements Serializable {
     private String servicoClassificacao;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "servico_categoriaId", nullable = false)
+    @JoinColumn(name = "servico_categoriaId")
     private CategoriaEntity categoria;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "servico_prestadorId", nullable = false)
+    @JoinColumn(name = "servico_prestadorId")
     private PrestadorEntity prestador;
 
     @OneToMany(fetch = FetchType.EAGER)
-    private List<AgendamentoEntity> agendamentos = new ArrayList<>();
+    private List<AgendamentoEntity> agendamentos;
 }

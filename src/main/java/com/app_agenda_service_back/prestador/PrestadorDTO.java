@@ -43,7 +43,7 @@ public class PrestadorDTO implements Serializable {
 
     private EnderecoEntity endereco;
 
-    private List<ServicoEntity> servicos = new ArrayList<>();
+    private List<ServicoEntity> servicos;
 
-    private List<TelefoneEntity> telefones = new ArrayList<>();
+    private List<TelefoneEntity> telefones;
 }
